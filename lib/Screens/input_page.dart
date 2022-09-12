@@ -10,6 +10,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  int sliderValue = 166;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(
                           "MALE",
-                          style: ktitle,
+                          style: kTitle,
                         )
                       ],
                     ),
@@ -50,7 +51,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(
                           "FEMALE",
-                          style: ktitle,
+                          style: kTitle,
                         )
                       ],
                     ),
@@ -58,8 +59,55 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             ),
-            const Expanded(
-              child: ReusableCard(),
+            Expanded(
+              child: ReusableCard(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    const Text(
+                      "HEIGHT",
+                      style: kTitle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          sliderValue.toString(),
+                          style: kLargeNumber,
+                        ),
+                        const Text(
+                          "cm",
+                          style: kTitle,
+                        ),
+                      ],
+                    ),
+                    SliderTheme(
+                      data: const SliderThemeData(
+                        activeTrackColor: Color(0xFFFFFFFF),
+                        inactiveTrackColor:  Color(0xFF90909C),
+                        thumbColor: Color(0xFFEA1556),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15),
+                        trackHeight: 1,
+                        overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
+                        overlayColor: Color(0xFF4a2348),
+                      ),
+                      child: Slider(
+                        value: sliderValue.toDouble(),
+                        onChanged: (double value) {
+                          setState(() {
+                            sliderValue = value.round();
+                          });
+                        },
+                        min: 1.0,
+                        max: 240.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Row(
               children: const <Widget>[

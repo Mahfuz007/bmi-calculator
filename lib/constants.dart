@@ -6,4 +6,5 @@ const kBottomButton =  TextStyle(
   color: Color(0xFFFFFFFF)
 );
 
-const ktitle = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFF90909C));
+const kTitle = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFF90909C));
+const kLargeNumber = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Color(0xFFFFFFFF));
