@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/Widgets/ReusabeCard.dart';
+import 'package:bmi_calculator/Widgets/ReusableCard.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -21,12 +21,40 @@ class _InputPageState extends State<InputPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                    child: Column(
+                      children: const <Widget>[
+                        Icon(
+                          Icons.male,
+                          size: 100.0,
+                          color: Color(0xFF90909C),
+                        ),
+                        Text(
+                          "MALE",
+                          style: ktitle,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                    child: Column(
+                      children: const <Widget>[
+                        Icon(
+                          Icons.female,
+                          size: 100.0,
+                          color: Color(0xFF90909C),
+                        ),
+                        Text(
+                          "FEMALE",
+                          style: ktitle,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
