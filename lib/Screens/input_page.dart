@@ -14,30 +14,40 @@ class _InputPageState extends State<InputPage> {
   int sliderValue = 166;
   int weight = 71;
   int age = 24;
+  Gender? selectedGender;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("BMI CALCULATOR"),
+          title: Center(child: Text(kAppTitle.toString())),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
+                    color: selectedGender == Gender.male ? kActiveColor: kInactiveColor,
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
                     child: Column(
-                      children: const <Widget>[
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
                         Icon(
                           Icons.male,
-                          size: 100.0,
-                          color: Color(0xFF90909C),
+                          size: 80.0,
+                          color: selectedGender == Gender.male ? kWhiteColor: kInactiveTitleColor,
                         ),
+                        const SizedBox(height: 10.0,),
                         Text(
-                          "MALE",
-                          style: kTitle,
+                          kMaleCardTitle.toString(),
+                          style: selectedGender == Gender.male ? kActiveTitle: kInactiveTitle,
                         )
                       ],
                     ),
@@ -45,16 +55,24 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    color: selectedGender == Gender.female ? kActiveColor: kInactiveColor,
                     child: Column(
-                      children: const <Widget>[
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
                         Icon(
                           Icons.female,
-                          size: 100.0,
-                          color: Color(0xFF90909C),
+                          size: 80.0,
+                          color: selectedGender == Gender.female ? kWhiteColor: kInactiveTitleColor,
                         ),
+                        const SizedBox(height: 10.0,),
                         Text(
-                          "FEMALE",
-                          style: kTitle,
+                          kFemaleCardTitle.toString(),
+                          style: selectedGender == Gender.female ? kActiveTitle: kInactiveTitle,
                         )
                       ],
                     ),
@@ -64,12 +82,14 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: ReusableCard(
+                onTap: () {},
+                color: kActiveColor,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    const Text(
-                      "HEIGHT",
-                      style: kTitle,
+                    Text(
+                      kHeightCardTitle.toString(),
+                      style: kInactiveTitle,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -80,17 +100,17 @@ class _InputPageState extends State<InputPage> {
                           sliderValue.toString(),
                           style: kLargeNumber,
                         ),
-                        const Text(
-                          "cm",
-                          style: kTitle,
+                        Text(
+                          kHeightParameterText.toString(),
+                          style: kInactiveTitle,
                         ),
                       ],
                     ),
                     SliderTheme(
                       data: const SliderThemeData(
-                        activeTrackColor: Color(0xFFFFFFFF),
-                        inactiveTrackColor: Color(0xFF90909C),
-                        thumbColor: Color(0xFFEA1556),
+                        activeTrackColor: kWhiteColor,
+                        inactiveTrackColor: kInactiveTitleColor,
+                        thumbColor: kMainFocusColor,
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 15),
                         trackHeight: 1,
@@ -117,12 +137,14 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
+                    onTap: () {},
+                    color: kActiveColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
                           kWeightTitle.toString(),
-                          style: kTitle,
+                          style: kInactiveTitle,
                         ),
                         Text(
                           weight.toString(),
@@ -155,12 +177,14 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
+                    onTap: () {},
+                      color: kActiveColor,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Text(
                             kAgeTitle.toString(),
-                            style: kTitle,
+                            style: kInactiveTitle,
                           ),
                           Text(
                             age.toString(),
@@ -198,10 +222,10 @@ class _InputPageState extends State<InputPage> {
               width: double.infinity,
               margin: const EdgeInsets.only(top: 10.0),
               padding: const EdgeInsets.only(bottom: 10.0),
-              color: const Color(0xFFEA1556),
-              child: const Center(
+              color: kMainFocusColor,
+              child: Center(
                 child: Text(
-                  "CALCULATE",
+                  kBottomButtonText.toString(),
                   style: kBottomButton,
                 ),
               ),
