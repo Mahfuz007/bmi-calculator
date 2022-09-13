@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/Screens/result_page.dart';
 import 'package:bmi_calculator/Widgets/floatingButton.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
@@ -217,16 +218,25 @@ class _InputPageState extends State<InputPage> {
                 ),
               ],
             ),
-            Container(
-              height: 50.0,
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 10.0),
-              padding: const EdgeInsets.only(bottom: 10.0),
-              color: kMainFocusColor,
-              child: Center(
-                child: Text(
-                  kBottomButtonText.toString(),
-                  style: kBottomButton,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context)=> const ResultPage())
+                  );
+                });
+              },
+              child: Container(
+                height: 50.0,
+                width: double.infinity,
+                margin: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(bottom: 10.0),
+                color: kMainFocusColor,
+                child: Center(
+                  child: Text(
+                    kBottomButtonText.toString(),
+                    style: kBottomButton,
+                  ),
                 ),
               ),
             ),

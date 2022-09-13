@@ -9,6 +9,8 @@ const kFemaleCardTitle = "FEMALE";
 const kHeightCardTitle = "HEIGHT";
 const kHeightParameterText = "cm";
 const kBottomButtonText = "CALCULATE";
+const kResultPageTitle = "YOUR RESULTS";
+const kResultPageBottomButtonText = "RE CALCULATE";
 
 //style values
 const kBottomButton =  TextStyle(
@@ -20,6 +22,8 @@ const kBottomButton =  TextStyle(
 const kInactiveTitle = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFF90909C));
 const kActiveTitle = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color(0xFFFFFFFF));
 const kLargeNumber = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold, color: Color(0xFFFFFFFF));
+const kExtraLargeNumber = TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Color(0xFFFFFFFF));
+const kResultPageTitleStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold,);
 
 //Colors value
 const kPrimaryColor = Color(0xFF0A0E21);
