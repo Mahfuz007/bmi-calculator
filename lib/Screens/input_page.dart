@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/Widgets/floatingButton.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/Widgets/ReusableCard.dart';
@@ -11,6 +12,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   int sliderValue = 166;
+  int weight = 71;
+  int age = 24;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,12 +89,13 @@ class _InputPageState extends State<InputPage> {
                     SliderTheme(
                       data: const SliderThemeData(
                         activeTrackColor: Color(0xFFFFFFFF),
-                        inactiveTrackColor:  Color(0xFF90909C),
+                        inactiveTrackColor: Color(0xFF90909C),
                         thumbColor: Color(0xFFEA1556),
                         thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 15),
                         trackHeight: 1,
-                        overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 25),
                         overlayColor: Color(0xFF4a2348),
                       ),
                       child: Slider(
@@ -110,12 +114,82 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          kWeightTitle.toString(),
+                          style: kTitle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kLargeNumber,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            FloatingButton(
+                              onPressed: () {
+                                setState(() {
+                                  if(weight!=0) weight--;
+                                });
+                              },
+                              child: const Icon(Icons.remove),
+                            ),
+                            FloatingButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              child: const Icon(Icons.add),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            kAgeTitle.toString(),
+                            style: kTitle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kLargeNumber,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              FloatingButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if(age!=0) age--;
+                                  });
+                                },
+                                child: const Icon(Icons.remove),
+                              ),
+                              FloatingButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                child: const Icon(Icons.add),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                  ),
                 ),
               ],
             ),
