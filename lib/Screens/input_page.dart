@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/Screens/result_page.dart';
 import 'package:bmi_calculator/Widgets/floatingButton.dart';
+import 'package:bmi_calculator/calculateBmi.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/Widgets/ReusableCard.dart';
@@ -31,7 +32,9 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male ? kActiveColor: kInactiveColor,
+                    color: selectedGender == Gender.male
+                        ? kActiveColor
+                        : kInactiveColor,
                     onTap: () {
                       setState(() {
                         selectedGender = Gender.male;
@@ -43,12 +46,18 @@ class _InputPageState extends State<InputPage> {
                         Icon(
                           Icons.male,
                           size: 80.0,
-                          color: selectedGender == Gender.male ? kWhiteColor: kInactiveTitleColor,
+                          color: selectedGender == Gender.male
+                              ? kWhiteColor
+                              : kInactiveTitleColor,
                         ),
-                        const SizedBox(height: 10.0,),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
                         Text(
                           kMaleCardTitle.toString(),
-                          style: selectedGender == Gender.male ? kActiveTitle: kInactiveTitle,
+                          style: selectedGender == Gender.male
+                              ? kActiveTitle
+                              : kInactiveTitle,
                         )
                       ],
                     ),
@@ -61,19 +70,27 @@ class _InputPageState extends State<InputPage> {
                         selectedGender = Gender.female;
                       });
                     },
-                    color: selectedGender == Gender.female ? kActiveColor: kInactiveColor,
+                    color: selectedGender == Gender.female
+                        ? kActiveColor
+                        : kInactiveColor,
                     child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Icon(
                           Icons.female,
                           size: 80.0,
-                          color: selectedGender == Gender.female ? kWhiteColor: kInactiveTitleColor,
+                          color: selectedGender == Gender.female
+                              ? kWhiteColor
+                              : kInactiveTitleColor,
                         ),
-                        const SizedBox(height: 10.0,),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
                         Text(
                           kFemaleCardTitle.toString(),
-                          style: selectedGender == Gender.female ? kActiveTitle: kInactiveTitle,
+                          style: selectedGender == Gender.female
+                              ? kActiveTitle
+                              : kInactiveTitle,
                         )
                       ],
                     ),
@@ -157,7 +174,7 @@ class _InputPageState extends State<InputPage> {
                             FloatingButton(
                               onPressed: () {
                                 setState(() {
-                                  if(weight!=0) weight--;
+                                  if (weight != 0) weight--;
                                 });
                               },
                               child: const Icon(Icons.remove),
@@ -179,41 +196,41 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     onTap: () {},
-                      color: kActiveColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Text(
-                            kAgeTitle.toString(),
-                            style: kInactiveTitle,
-                          ),
-                          Text(
-                            age.toString(),
-                            style: kLargeNumber,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              FloatingButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if(age!=0) age--;
-                                  });
-                                },
-                                child: const Icon(Icons.remove),
-                              ),
-                              FloatingButton(
-                                onPressed: () {
-                                  setState(() {
-                                    age++;
-                                  });
-                                },
-                                child: const Icon(Icons.add),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    color: kActiveColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          kAgeTitle.toString(),
+                          style: kInactiveTitle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kLargeNumber,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            FloatingButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (age != 0) age--;
+                                });
+                              },
+                              child: const Icon(Icons.remove),
+                            ),
+                            FloatingButton(
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              child: const Icon(Icons.add),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -221,9 +238,14 @@ class _InputPageState extends State<InputPage> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context)=> const ResultPage())
-                  );
+                  CalculateBmi result = CalculateBmi(sliderValue, weight, age);
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                            result: result.getCalculatedBMI(),
+                            resultMessage: result.getResultMessage(),
+                            resultTitle: result.getResultTitle(),
+                          )));
                 });
               },
               child: Container(

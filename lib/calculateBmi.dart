@@ -1,13 +1,15 @@
+import 'dart:math';
+
 class CalculateBmi {
   late double _bmi;
   late final int _height;
-  late final int _wight;
+  late final int _weight;
   late int _age;
 
-  CalculateBmi(this._height, this._wight, this._age);
+  CalculateBmi(this._height, this._weight, this._age);
 
   getCalculatedBMI() {
-    _bmi =  (_wight/(_height/1000));
+    _bmi =  (_weight/pow((_height/100), 2));
     return _bmi;
   }
 

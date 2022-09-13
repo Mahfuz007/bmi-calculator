@@ -3,8 +3,15 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
-
+  const ResultPage(
+      {Key? key,
+      required this.resultTitle,
+      required this.result,
+      required this.resultMessage})
+      : super(key: key);
+  final String resultTitle;
+  final double result;
+  final String resultMessage;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +20,7 @@ class ResultPage extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
             kResultPageTitle.toString(),
@@ -25,21 +32,34 @@ class ResultPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  const Text(
-                    "Result title",
-                    style: TextStyle(
+                  Text(
+                    resultTitle.toString(),
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Color(0xFF29b270),
                     ),
                   ),
-                  const Text('22.5', style: kExtraLargeNumber,),
+                  Text(
+                    result.toStringAsFixed(1),
+                    style: kExtraLargeNumber,
+                  ),
                   Column(
                     children: const [
-                      Text('Normal BMI range: ', style: kInactiveTitle,),
-                      Text('18.5 - 25 kg/m2', style: kActiveTitle,),
+                      Text(
+                        'Normal BMI range: ',
+                        style: kInactiveTitle,
+                      ),
+                      Text(
+                        '18.5 - 25 kg/m2',
+                        style: kActiveTitle,
+                      ),
                     ],
                   ),
-                  const Text('You have a normal Body weight. Good Job!', style: kActiveTitle, textAlign: TextAlign.center,),
+                  Text(
+                    resultMessage.toString(),
+                    style: kActiveTitle,
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),
